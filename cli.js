@@ -21,11 +21,11 @@ const cli = meow(`
 		ipv6: {
 			type: 'boolean',
 			default: true,
-			alias: '6',
+			shortFlag: '6',
 		},
 		ipv4: {
 			type: 'boolean',
-			alias: '4',
+			shortFlag: '4',
 		},
 	},
 });

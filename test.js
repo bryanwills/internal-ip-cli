@@ -1,7 +1,7 @@
 import process from 'node:process';
 import {isIPv4, isIPv6} from 'node:net';
 import test from 'ava';
-import execa from 'execa';
+import {execa} from 'execa';
 
 const isCI = Boolean(process.env.CI);
 
