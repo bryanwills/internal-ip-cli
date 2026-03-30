@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import process from 'node:process';
 import meow from 'meow';
 import {internalIpV6Sync, internalIpV4Sync} from 'internal-ip';
 
@@ -32,4 +33,11 @@ const cli = meow(`
 
 const getIp = cli.flags.ipv4 ? internalIpV4Sync : internalIpV6Sync;
 
-console.log(getIp());
+const ip = getIp();
+
+if (ip === undefined) {
+	console.error('Could not detect your internal IP address');
+	process.exit(1);
+}
+
+console.log(ip);

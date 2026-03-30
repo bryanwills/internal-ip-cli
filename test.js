@@ -11,8 +11,13 @@ test('IPv6', async t => {
 		return;
 	}
 
-	const {stdout} = await execa('./cli.js', ['--ipv6']);
-	t.true(isIPv6(stdout));
+	const result = await execa('./cli.js', ['--ipv6'], {reject: false});
+
+	if (result.exitCode === 1) {
+		t.is(result.stderr, 'Could not detect your internal IP address');
+	} else {
+		t.true(isIPv6(result.stdout));
+	}
 });
 
 test('IPv4', async t => {
